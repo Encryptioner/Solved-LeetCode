@@ -32,3 +32,20 @@ public:
         return decimal;
     }
 };
+
+// Test cases
+
+// CM = 900
+// DXVI =  516
+// MCLXXXIII =  1183
+// MDCCXXXIII =  1733
+// MDCCCXLI =  1841
+// DCCCLXXI =  871
+// MCCCLXXXIII =  1383
+// MCCL =  1250
+// MDLXVIII =  1568
+// MMCXIII =  2113
+// MMCCLXXIV =  2274
+// MCMLXXXII = 1982
+// CMXCIX = 999
+// MCMLXXXVIII = 1988
