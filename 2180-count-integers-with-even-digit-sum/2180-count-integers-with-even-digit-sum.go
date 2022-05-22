@@ -6,9 +6,11 @@
  * Created on Sun May 22 2022
  */
 
-package main
+// REFERENCE: https://leetcode.com/problems/count-integers-with-even-digit-sum/
 
-import "fmt"
+// package main
+
+// import "fmt"
 
 func getEachDigit(digits *[]int, num int) {
 	if num >= 10 {
@@ -18,22 +20,29 @@ func getEachDigit(digits *[]int, num int) {
 }
 
 func countEven(num int) int {
-	count := 0
-	for i := 1; i <= num; i++ {
-		digits := make([]int, 0)
-		getEachDigit(&digits, i)
 
-		sum := 0
+	val := num / 2
 
-		for _, v := range digits {
-			sum += v
-		}
-
-		if sum %2 == 0 {
-			count += 1
-		}
+	// handle odd number
+	if num%2 == 1 {
+		return val
 	}
-	return count
+
+	// handle even number
+
+	digits := make([]int, 0)
+	getEachDigit(&digits, num)
+
+	sum := 0
+
+	for _, v := range digits {
+		sum += v
+	}
+
+	if sum%2 == 0 {
+		return val
+	}
+	return val - 1
 }
 
 // func main() {
@@ -47,3 +56,21 @@ func countEven(num int) int {
 // 		fmt.Println("OUTPUT : ", countEven(num))
 // 	}
 // }
+
+// Test cases
+
+// 1 = 0
+// 2 = 1
+// 3 = 1
+// 4 = 2
+// 5 = 2
+// 10 = 4
+// 30 = 14
+// 31 = 15
+// 40 = 20
+// 63 = 31
+// 95 = 47
+// 100 = 49
+// 101 = 50
+// 854 = 426
+// 1000 = 499
