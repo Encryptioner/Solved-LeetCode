@@ -16,17 +16,14 @@
 
 func restoreString(s string, indices []int) string {
 
-	strMap := map[int]string{}
+	strLength := len(s)
+	result := make([]byte, strLength)
 
 	for i, v := range indices {
-		strMap[v] = string(s[i])
+		result[v] = s[i]
 	}
 
-	result := ""
-	for i, _ := range indices {
-		result += strMap[i]
-	}
-	return result
+	return string(result[:])
 }
 
 // func main() {
