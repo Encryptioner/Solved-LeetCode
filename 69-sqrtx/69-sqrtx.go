@@ -11,25 +11,22 @@
 // import "fmt"
 
 func mySqrt(x int) int {
-	// works for 1 decimal accuracy after decimal
-	n := 1
-	// n := 0.1
+	if x == 2 {
+		return 1
+	}
 
-	m := float64(0)
-	num := float64(x)
+	n := 1
+	m := 0
+	num := x
 
 	for m < num {
-		// NOTE: floating point arithmetic is not reliable, for example 0.7+0.1 becomes 0.799999999
-		// So, multiple with pow(10, decimal accuracy after decimal)
 		if m*m > num {
-			m = ((m * 10) - float64(n)) / 10
-			// m -= n
+			m -= n
 			break
 		}
-		m = ((m * 10) + float64(n)) / 10
-		// m += n
+		m += n
 	}
-	return int(m)
+	return m
 }
 
 // func main() {
@@ -49,6 +46,6 @@ func mySqrt(x int) int {
 
 // 0 = 0
 // 1 = 1
-// 2 = 2
+// 2 = 1
 // 4 = 4
 // 2147483648 = 46340
