@@ -20,6 +20,22 @@ private:
     adj[src].push_back(dest);
     // cout << src << " "<< dest << "\n";
   }
+  void printShortestPath(int pred[], int dest) {
+    // vector path stores the shortest path
+    vector<int> path;
+    int crawl = dest;
+    path.push_back(crawl);
+    while (pred[crawl] != -1) {
+      path.push_back(pred[crawl]);
+      crawl = pred[crawl];
+    }
+    // printing path from source to destination
+    cout << "\nPath is::\n";
+    for (int i = path.size() - 1; i >= 0; i--) {
+      cout << path[i] << " ";
+    }
+    cout <<"\n";
+  }
   int getShortestDistance(
     vector<int> adj[], 
     int src,
@@ -35,6 +51,9 @@ private:
     if (BFS(adj, src, dest, len, pred, dist) == false) {
       return -1;
     }
+
+    // printShortestPath(pred, dest);
+
     return dist[dest];
   }
   bool BFS(
