@@ -20,48 +20,28 @@ private:
     adj[src].push_back(dest);
     // cout << src << " "<< dest << "\n";
   }
-  int printShortestDistance(
+  int getShortestDistance(
     vector<int> adj[], 
-    int s,
-    int dest, 
-    int v
+    int src,
+    int dest,
+    int len
   )
   {
     // predecessor[i] array stores predecessor of
     // i and distance array stores distance of i
-    // from s
-    int pred[v], dist[v];
+    // from src
+    int pred[len], dist[len];
 
-    if (BFS(adj, s, dest, v, pred, dist) == false) {
-      // cout << "Given source and destination" << " are not connected";
+    if (BFS(adj, src, dest, len, pred, dist) == false) {
       return -1;
     }
-
-    // vector path stores the shortest path
-    vector<int> path;
-    int crawl = dest;
-    path.push_back(crawl);
-    while (pred[crawl] != -1) {
-      path.push_back(pred[crawl]);
-      crawl = pred[crawl];
-    }
-
-    // distance from source is in distance array
-    // cout << "Shortest path length is : "<< dist[dest];
-
-    // printing path from source to destination
-    // cout << "\nPath is::\n";
-    // for (int i = path.size() - 1; i >= 0; i--) {
-    //   cout << path[i] << " ";
-    // }
-    // cout <<"\n";
     return dist[dest];
   }
   bool BFS(
     vector<int> adj[], 
     int src, 
     int dest, 
-    int v,
+    int len,
     int pred[], 
     int dist[]
   )
@@ -74,13 +54,13 @@ private:
     // boolean array visited[] which stores the
     // information whether ith vertex is reached
     // at least once in the Breadth first search
-    bool visited[v];
+    bool visited[len];
 
     // initially all vertices are unvisited
     // so v[i] for all i is false
     // and as no path is yet constructed
     // dist[i] for all i set to infinity
-    for (int i = 0; i < v; i++) {
+    for (int i = 0; i < len; i++) {
       visited[i] = false;
       dist[i] = INT_MAX;
       pred[i] = -1;
@@ -136,7 +116,7 @@ public:
       }
     }
 
-    return printShortestDistance(adjacencyList, 0, len-1, len);
+    return getShortestDistance(adjacencyList, 0, len-1, len);
   }
 };
 
