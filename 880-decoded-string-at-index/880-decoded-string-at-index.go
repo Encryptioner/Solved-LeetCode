@@ -6,7 +6,6 @@
  * Created on Sun Jun 05 2022
  */
 
-// Wrong Answer
 // REFERENCE: https://leetcode.com/problems/decoded-string-at-index/
 
 // package main
