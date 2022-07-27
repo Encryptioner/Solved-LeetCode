@@ -3,7 +3,7 @@
  *
  * https://encryptioner.github.io/
  *
- * Created on Wed Jul 20 2022
+ * Created on Wed Jul 27 2022
  */
 
 // REFERENCE: https://leetcode.com/problems/number-of-matching-subsequences/
@@ -15,36 +15,45 @@
 // 	"os"
 // )
 
-/* Returns true if s1 is subsequence of s2*/
-func isSubsequence(s1 string, s2 string) bool {
-
-	n := len(s1)
-	m := len(s2)
-	i := 0
-	j := 0
-
-	for i < n && j < m {
-		if s1[i] == s2[j] {
-			i++
-		}
-		j++
-	}
-
-	/*
-		If i reaches end of s1,that mean we found all
-		characters of s1 in s2,
-		so s1 is subsequence of s2, else not
-	*/
-	return i == n
-}
-
 func numMatchingSubseq(s string, words []string) int {
+	initialCnt := 0
 	cnt := 0
-	for i := 0; i < len(words); i++ {
-		if isSubsequence(words[i], s) {
-			cnt += 1
+	strLen := len(s)
+	wordLength := len(words)
+	wordIndexes := make([]int, wordLength)
+
+	for strIndex := 0; strIndex < strLen; strIndex++ {
+
+		initialCnt = 0
+
+		for i := 0; i < wordLength; i++ {
+			word := words[i]
+			currentIndex := wordIndexes[i]
+
+			if currentIndex >= len(word) {
+				initialCnt++
+				continue
+			}
+
+			if word[currentIndex] == s[strIndex] {
+				wordIndexes[i] = currentIndex + 1
+			}
+		}
+
+		if initialCnt == wordLength {
+			return wordLength
 		}
 	}
+
+	for i := 0; i < wordLength; i++ {
+		word := words[i]
+		currentIndex := wordIndexes[i]
+
+		if currentIndex == len(word) {
+			cnt++
+		}
+	}
+
 	return cnt
 }
 
